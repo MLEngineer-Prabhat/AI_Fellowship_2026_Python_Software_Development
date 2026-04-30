@@ -54,6 +54,268 @@ A good engineer builds code that other engineers love to use. If I run from weat
 For reference, this is the code you are destroying to build something better.
 
 
-# ⚠️ WARNING: Ramesh's Spaghetti Code Below
-🏁 One last thing:
-How do you want to handle the Bonus Challenge for the students who finish early? I can add a section for "Automated Testing" or "JSON Output Mode" if you like!
+
+# 💻 Phase 2: Professional Workflow (Setup)
+
+A professional engineer never installs packages globally.  
+You must use a **Virtual Environment**.
+
+---
+
+
+
+
+
+
+
+
+markdown
+
+# 🌤️ Weather CLI Tool
+
+A modular, production-ready command-line weather application built in Python. Fetches and processes weather data for supported cities with clean architecture, proper dependency management, and automated testing.
+
+---
+
+## 📁 Project Structure
+
+```
+weather-cli/
+├── weather/
+│   ├── __init__.py
+│   ├── client.py          # API communication layer
+│   └── processor.py       # Data processing & transformation
+├── main.py                # CLI entry point
+├── test_suite.py          # Automated test runner
+├── requirements.txt       # Pinned dependencies
+└── README.md
+```
+
+---
+
+## 💻 Phase 2: Environment Setup
+
+### Prerequisites
+
+- Python **3.9+** installed on your system
+- `pip` available in your PATH
+
+---
+
+### 🐧 Linux / 🍎 macOS
+
+**1. Create the virtual environment**
+```bash
+python3 -m venv venv
+```
+
+**2. Activate the virtual environment**
+```bash
+source venv/bin/activate
+```
+
+**3. Confirm activation** — your terminal prompt should show `(venv)`
+```bash
+which python
+# Expected: /path/to/project/venv/bin/python
+```
+
+**4. Deactivate when done**
+```bash
+deactivate
+```
+
+---
+
+### 🪟 Windows
+
+**1. Create the virtual environment**
+```cmd
+python -m venv venv
+```
+
+**2. Activate the virtual environment**
+
+- **Command Prompt:**
+```cmd
+venv\Scripts\activate.bat
+```
+
+- **PowerShell:**
+```powershell
+venv\Scripts\Activate.ps1
+```
+
+> ⚠️ If you encounter a PowerShell execution policy error, run:
+> ```powershell
+> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+> ```
+
+**3. Confirm activation** — your prompt should show `(venv)`
+```cmd
+where python
+# Expected: C:\path\to\project\venv\Scripts\python.exe
+```
+
+**4. Deactivate when done**
+```cmd
+deactivate
+```
+
+---
+
+## 📦 Dependency Management
+
+All dependencies are **pinned to exact versions** in `requirements.txt` to guarantee reproducibility across environments.
+
+### ✅ Correct — Pinned versions
+```
+requests==2.31.0
+```
+
+### ❌ Incorrect — Unpinned versions
+```
+requests
+```
+
+> Unpinned dependencies risk silent breaking changes when libraries release updates.
+
+---
+
+### Installing Dependencies
+
+With your virtual environment **activated**, run:
+
+```bash
+pip install -r requirements.txt
+```
+
+**Verify installation**
+```bash
+pip list
+```
+
+**Freeze current environment** (if adding new packages)
+```bash
+pip freeze > requirements.txt
+```
+
+---
+
+## 🚀 Phase 3: Execution & Testing
+
+The application runs entirely as a **command-line tool** — no interactive input required.
+
+### Running the Application
+
+**With a supported city:**
+```bash
+python main.py Kathmandu
+```
+
+**Expected output:**
+```
+✅ Weather for Kathmandu:
+   Temperature : 22°C
+   Condition   : Partly Cloudy
+   Humidity    : 65%
+```
+
+---
+
+**With an unsupported city:**
+```bash
+python main.py London
+```
+
+**Expected output:**
+```
+❌ Error: 'London' is not a supported city.
+   Supported cities: Kathmandu, ...
+```
+
+> The system returns a clear, descriptive error message for any city not defined in the supported cities Enum.
+
+---
+
+## 🧪 Phase 4: Automation — Test Suite
+
+`test_suite.py` automates weather data fetching and processing across **all supported cities** and exports structured results.
+
+### What it does
+
+- Imports `weather.client` and `weather.processor` directly
+- Iterates over every city defined in the supported cities `Enum`
+- Fetches and processes weather data for each city
+- Saves all results to **`weather_output.json`**
+
+### Running the Test Suite
+
+```bash
+python test_suite.py
+```
+
+**Expected output:**
+```
+Running weather test suite...
+  ✅ Kathmandu — OK
+  ✅ [city]    — OK
+  ...
+Results saved → weather_output.json
+```
+
+### Output Format — `weather_output.json`
+
+```json
+{
+  "Kathmandu": {
+    "temperature": 22,
+    "condition": "Partly Cloudy",
+    "humidity": 65,
+    "fetched_at": "2025-04-30T10:30:00Z"
+  }
+}
+```
+
+---
+
+## 🎯 Design Principles
+
+| Principle | Implementation |
+|---|---|
+| **Modular architecture** | `client.py` handles I/O, `processor.py` handles logic |
+| **Environment isolation** | Virtual environment per project |
+| **Reproducible builds** | All dependencies pinned in `requirements.txt` |
+| **CLI-first** | No interactive prompts — arguments only |
+| **Automation-ready** | `test_suite.py` runs all cities end-to-end |
+| **Clear error handling** | Unsupported cities return descriptive messages |
+
+---
+
+## 🔧 Development Workflow
+
+```bash
+# 1. Clone the repository
+git clone 
+cd weather-cli
+
+# 2. Create and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate          # Linux/macOS
+# venv\Scripts\activate           # Windows
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Run the app
+python main.py Kathmandu
+
+# 5. Run the test suite
+python test_suite.py
+```
+
+---
+
+## 📄 License
+
+This project is intended for evaluation and educational purposes.
