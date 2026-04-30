@@ -71,6 +71,7 @@ weather-cli/
 │   ├── __init__.py
 │   ├── client.py          # API communication layer
 │   └── processor.py       # Data processing & transformation
+|   └── models.py
 ├── main.py                # CLI entry point
 ├── test_suite.py          # Automated test runner
 ├── requirements.txt       # Pinned dependencies
@@ -301,7 +302,3 @@ python test_suite.py
 ```
 
 ---
-
-## 📄 License
-
-This project is intended for evaluation and educational purposes.
