@@ -57,20 +57,6 @@ For reference, this is the code you are destroying to build something better.
 
 # 💻 Phase 2: Professional Workflow (Setup)
 
-A professional engineer never installs packages globally.  
-You must use a **Virtual Environment**.
-
----
-
-
-
-
-
-
-
-
-markdown
-
 # 🌤️ Weather CLI Tool
 
 A modular, production-ready command-line weather application built in Python. Fetches and processes weather data for supported cities with clean architecture, proper dependency management, and automated testing.
